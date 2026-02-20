@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { WebsocketsModule } from './websockets/websockets.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { join } from 'path';
       logging: true,
       entities: [__dirname + '/**/*.entity{.ts,.js}']
     }),
-    UsersModule
+    UsersModule,
+    WebsocketsModule
   ],
   controllers: [AppController],
   providers: [AppService],
