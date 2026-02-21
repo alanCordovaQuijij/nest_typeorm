@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -6,15 +6,27 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({unique: true})
+    @Column()
+    name: string;
+
+    @Column({nullable: true, default: null })
     username: string;
+
+    @Column({ unique: true })
+    email: string;
 
     @Column()
     password: string;
 
+    @Column({default: 'user' })
+    rol: string;
+
     @Column({ default: () => 'NOW()' })
     createdAt: Date;
 
-    @Column({nullable: true, default: null})
+    @DeleteDateColumn()
+    deleteAt: Date;
+
+    @Column({ nullable: true, default: null })
     autoStrategy: string;
 }
